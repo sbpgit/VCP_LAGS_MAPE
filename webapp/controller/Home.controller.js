@@ -761,6 +761,8 @@ sap.ui.define([
             oBinding.filter([oFilter]);
         },
         updateQty() {
+            that.ActualQty = [];
+            that.NormalQty = [];
             let val;
             if (that.byId("idMapBox").getSelected()) {
                 val = ["MAPE"]
