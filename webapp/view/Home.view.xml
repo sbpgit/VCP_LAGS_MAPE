@@ -60,8 +60,8 @@
 			</ComboBox>
                     <Button id="idAsmBtn" text="Assembly" press="onOpenAsm"></Button>
                         <ToolbarSpacer />
-                       <CheckBox id="idMapBox" text="Mape" select="onSelectMap" selected="true"></CheckBox>
-                       <CheckBox id="idMapQtyBox" text="Map Quantity" select="onSelectMapQty"></CheckBox>
+                       <CheckBox id="idMapBox" text="MAPE" select="onSelectMap" selected="true"></CheckBox>
+                       <CheckBox id="idMapQtyBox" text="MAPE Quantity" select="onSelectMapQty"></CheckBox>
                        <CheckBox id="idLagQtyBox" text="Lag Quantity" select="onSelectLagQty"></CheckBox>
                     </OverflowToolbar>
 
