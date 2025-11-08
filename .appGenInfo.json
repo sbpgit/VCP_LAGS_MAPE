@@ -1,0 +1,24 @@
+{
+  "generationParameters": {
+    "generationDate": "Fri Nov 07 2025 06:15:03 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "CLI",
+    "serviceType": "SAP System (ABAP On-Premise)",
+    "metadataFilename": "",
+    "serviceUrl": "https://sbpbtp-vcpprovider-sc0jeojq-dev-config-products-srv.cfapps.us10.hana.ondemand.com/v2/catalog",
+    "appName": "lags",
+    "appTitle": "Lags",
+    "appDescription": "An SAP Fiori application.",
+    "appNamespace": "vcpapp",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.142.0",
+    "enableCodeAssist": false,
+    "enableEslint": true,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.19.3",
+    "template": "Basic V2",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```"
+  }
+}
