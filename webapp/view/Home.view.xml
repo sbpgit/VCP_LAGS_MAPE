@@ -7,68 +7,72 @@
     xmlns:table="sap.ui.table"
     xmlns:filterbar="sap.ui.comp.filterbar"
     xmlns="sap.m">
-     <f:DynamicPage id="dynamicPageLag">
-            <f:title>
-              
-            </f:title>
-            <f:header>
-                <f:DynamicPageHeader pinnable="true">
-                    <l:HorizontalLayout allowWrapping="true">
-                        <filterbar:FilterBar id="filterbarLag"  useToolbar="false" search=".onGo" filterChange=".onFilterChange" showClearOnFB="true" clear="onClear" >
-                            <filterbar:filterGroupItems>
-                                <filterbar:FilterGroupItem name="FACTORY_LOACATION" label="Factory Location" groupName="group1" visibleInFilterBar="true" id="idLocLabeLag">
-                                    <filterbar:control>
-                                        <MultiInput id="idFacLocLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
-                                    </filterbar:control>
-                                </filterbar:FilterGroupItem>
-                                <filterbar:FilterGroupItem name="LOCATION" label="Location" groupName="group1" visibleInFilterBar="true" id="idLocLabelLag">
-                                    <filterbar:control>
-                                        <MultiInput id="idLocLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
-                                    </filterbar:control>
-                                </filterbar:FilterGroupItem>
-                                <filterbar:FilterGroupItem name="PRODUCT"  label="Product" groupName="group1" visibleInFilterBar="true" id="idProdLabelLag">
-                                    <filterbar:control>
-                                        <MultiInput id="idProdLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
-                                    </filterbar:control>
-                                </filterbar:FilterGroupItem>
-                                <!-- <filterbar:FilterGroupItem name="ASSEMBLY" label="Assembly" groupName="group1" visibleInFilterBar="true" id="idAsmbLabelLag">
+    <f:DynamicPage id="dynamicPageLag">
+        <f:title>
+
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <l:HorizontalLayout allowWrapping="true">
+                    <filterbar:FilterBar id="filterbarLag" useToolbar="false" search=".onGo" filterChange=".onFilterChange" showClearOnFB="true" clear="onClear">
+                        <filterbar:filterGroupItems>
+                            <filterbar:FilterGroupItem name="FACTORY_LOACATION" label="Factory Location" groupName="group1" visibleInFilterBar="true" id="idLocLabeLag">
+                                <filterbar:control>
+                                    <MultiInput id="idFacLocLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                            <filterbar:FilterGroupItem name="LOCATION" label="Location" groupName="group1" visibleInFilterBar="true" id="idLocLabelLag">
+                                <filterbar:control>
+                                    <MultiInput id="idLocLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                            <filterbar:FilterGroupItem name="PRODUCT" label="Product" groupName="group1" visibleInFilterBar="true" id="idProdLabelLag">
+                                <filterbar:control>
+                                    <MultiInput id="idProdLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                            <!-- <filterbar:FilterGroupItem name="ASSEMBLY" label="Assembly" groupName="group1" visibleInFilterBar="true" id="idAsmbLabelLag">
                                     <filterbar:control>
                                         <MultiInput id="idAsmbLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
                                     </filterbar:control>
                                 </filterbar:FilterGroupItem> -->
-                                <filterbar:FilterGroupItem name="PERIODDESC" label="Month Start" groupName="group1" visibleInFilterBar="true">
-                                    <filterbar:control>
-                                         <MultiInput id="idMonStartLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
-                                    </filterbar:control>
-                                </filterbar:FilterGroupItem>
-                                <filterbar:FilterGroupItem name="PERIODDESC1" label="Month End" groupName="group1" visibleInFilterBar="true">
-                                    <filterbar:control>
-                                         <MultiInput id="idMonEndLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
-                                    </filterbar:control>
-                                </filterbar:FilterGroupItem>
-                            </filterbar:filterGroupItems>
-                        </filterbar:FilterBar>
-                    </l:HorizontalLayout>
-                </f:DynamicPageHeader>
-            </f:header>
-            <f:content>
+                            <filterbar:FilterGroupItem name="PERIODDESC" label="Month Start" groupName="group1" visibleInFilterBar="true">
+                                <filterbar:control>
+                                    <MultiInput id="idMonStartLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                            <filterbar:FilterGroupItem name="PERIODDESC1" label="Month End" groupName="group1" visibleInFilterBar="true">
+                                <filterbar:control>
+                                    <MultiInput id="idMonEndLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                        </filterbar:filterGroupItems>
+                    </filterbar:FilterBar>
+                </l:HorizontalLayout>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
             <VBox id="pivotPageLag">
-                    <OverflowToolbar id="idPivotToolBarLag" height="12%" visible="{= ${oGModel>/showPivot} }">
-                  <ComboBox id="idTypeBox" selectedKey="Assembly" selectionChange="onChnageType">
-				<core:Item key="Assembly" text="Assembly" />
-				<core:Item key="Product" text="Product Demand" />
-			</ComboBox>
+                <OverflowToolbar id="idPivotToolBarLag" height="12%" visible="{= ${oGModel>/showPivot} }">
+                    <ComboBox id="idTypeBox" selectedKey="Assembly" selectionChange="onChnageType">
+                        <core:Item key="Assembly" text="Assembly" />
+                        <core:Item key="Product" text="Product Demand" />
+                        <core:Item key="Restriction" text="Restriction" />
+                        <core:Item key="OptPercent" text="OptPercent" />
+                    </ComboBox>
                     <Button id="idAsmBtn" text="Assembly" press="onOpenAsm"></Button>
-                        <ToolbarSpacer />
-                       <CheckBox id="idMapBox" text="MAPE" select="onSelectMap" selected="true"></CheckBox>
-                       <CheckBox id="idMapQtyBox" text="MAPE Quantity" select="onSelectMapQty"></CheckBox>
-                       <CheckBox id="idLagQtyBox" text="Lag Quantity" select="onSelectLagQty"></CheckBox>
-                    </OverflowToolbar>
+                    <ToolbarSpacer />
+                    <RadioButtonGroup id="idMapTypeGroup" columns="3" selectedIndex="0" select="onSelectMapType">
+                        <RadioButton id="idMapBox" text="MAPE" />
+                        <RadioButton id="idLagQtyBox" text="Lag Quantity" />
+                        <RadioButton id="idMapQtyBox" text="MAPE Quantity" />
+                    </RadioButtonGroup>
+                </OverflowToolbar>
 
-                    <table:Table id="myTableLag" visible="{= !${oGModel>/showPivot} }" width="100%">
-                    </table:Table>
-                    <html:div id="mainDivLag" class = "mainDivClass"/>
-                </VBox>
-            </f:content>
-        </f:DynamicPage>
+                <table:Table id="myTableLag" visible="{= !${oGModel>/showPivot} }" width="100%">
+                </table:Table>
+                <html:div id="mainDivLag" class = "mainDivClass"/>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
 </mvc:View>

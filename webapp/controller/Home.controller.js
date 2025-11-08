@@ -716,7 +716,28 @@ sap.ui.define([
                     that.staticColumns = ["Location", "Product", "Lag Month"]
                     that.byId("idAsmBtn").setVisible(false);
                 }
+                if (type === "Restriction") {
+                    oRes = await that.callFunction("getRestrictionLagFun", {
+                        FACTORY_LOCATION: FLoc, LOCATION: Loc, START_MONTH: Mstart, END_MONTH: MEnd
+                    });
+                    data = JSON.parse(oRes.getRestrictionLagFun);
+                    that.staticColumns = ["Line", "Restriction", "Lag Month"]
+                    that.byId("idAsmBtn").setVisible(false);
+                }
+                // if (type === "Restriction") {
+                //     oRes = await that.callFunction("getRestrictionLagFun", {
+                //         FACTORY_LOCATION: FLoc, LOCATION: Loc, START_MONTH: Mstart, END_MONTH: MEnd
+                //     });
+                //     data = JSON.parse(oRes.getRestrictionLagFun);
+                //     that.staticColumns = ["Location", "Product", "Lag Month"]
+                //     that.byId("idAsmBtn").setVisible(false);
+                // }
                 that.allData = data;
+                that.allData.forEach(o => {
+                    if (o.ASSEMBLY)
+                        if (!assembly.includes(o.ASSEMBLY))
+                            assembly.push(o.ASSEMBLY);
+                })
                 that.updateQty();
                 if (type === "Assembly")
                     sap.ui.getCore().byId("asmDetailsDialog").setModel(new JSONModel({ asmDetails: assembly.map(a => { return { ASSEMBLY: a } }) }));
@@ -763,15 +784,16 @@ sap.ui.define([
         updateQty() {
             that.ActualQty = [];
             that.NormalQty = [];
+            let text = that.byId("idMapTypeGroup").getSelectedButton().getText()
             let val;
-            if (that.byId("idMapBox").getSelected()) {
-                val = ["MAPE"]
+            if (text === "MAPE") {
+                val = "MAPE"
             }
-            else if (that.byId("idMapQtyBox").getSelected()) {
-                val = ["MAPE_QTY"]
+            else if (text === "MAPE Quantity") {
+                val = "MAPE_QTY"
             }
-            else if (that.byId("idLagQtyBox").getSelected()) {
-                val = ["LAG_QTY"]
+            else if (text === "Lag Quantity") {
+                val = "LAG_QTY"
             }
             that.allData.forEach(o => {
                 if (o.LAG_MONTH == 0)
@@ -783,35 +805,9 @@ sap.ui.define([
                 //         assembly.push(o.ASSEMBLY);
             })
         },
-        onSelectMap(e) {
-            if (e.mParameters.selected) {
-                that.byId("idMapQtyBox").setSelected(false);
-                that.byId("idLagQtyBox").setSelected(false);
-                that.updateQty();
-                that.loadPivotTable(that.allData);
-            } else {
-                that.byId("idMapBox").setSelected(true);
-            }
-        },
-        onSelectMapQty(e) {
-            if (e.mParameters.selected) {
-                that.byId("idMapBox").setSelected(false);
-                that.byId("idLagQtyBox").setSelected(false);
-                that.updateQty();
-                that.loadPivotTable(that.allData);
-            } else {
-                that.byId("idMapQtyBox").setSelected(true);
-            }
-        },
-        onSelectLagQty(e) {
-            if (e.mParameters.selected) {
-                that.byId("idMapBox").setSelected(false);
-                that.byId("idMapQtyBox").setSelected(false);
-                that.updateQty();
-                that.loadPivotTable(that.allData);
-            } else {
-                that.byId("idLagQtyBox").setSelected(true);
-            }
+        onSelectMapType(e) {
+            that.updateQty();
+            that.loadPivotTable(that.allData);
         },
         jsonToPivotData: function (json) {
             const headers = [];
@@ -819,6 +815,10 @@ sap.ui.define([
             keys.forEach(key => {
                 let label;
                 switch (key) {
+                    case "LINE_ID":
+                        label = "Line";
+                    case "RESTRICTION":
+                        label = "Restriction";
                     case "FACTORY_LOC":
                         label = "Factory Location";
                         break;
@@ -913,14 +913,16 @@ sap.ui.define([
                 // if (!val) {
                 //     var val = ["MAPE"];
                 // }
-                if (that.byId("idMapBox").getSelected()) {
+                let text = that.byId("idMapTypeGroup").getSelectedButton().getText()
+                let val;
+                if (text === "MAPE") {
                     val = ["MAPE"]
                 }
-                else if (that.byId("idMapQtyBox").getSelected()) {
-                    val = ["MAPE Quantity"]
+                else if (text === "MAPE Quantity") {
+                    val = [text]
                 }
-                else if (that.byId("idLagQtyBox").getSelected()) {
-                    val = ["Lag Quantity"]
+                else if (text === "Lag Quantity") {
+                    val = [text]
                 }
                 that.value = val;
                 let

@@ -42,7 +42,7 @@ table.pvtTable tbody tr th {
 
 /* Data cells */
 table.pvtTable tbody tr td {
-    padding: 10px;
+    padding: 2px;
     border: 1px solid #d9dadb;
     text-align: center;
     color: white;
@@ -60,14 +60,14 @@ table.pvtTable .pvtColLabel {
     font-weight: bold;
     background-color: #f2f2f2;
     color: #0b74de;
-    padding: 10px;
+    padding: 2px;
 }
 
 /* Total label styling */
 table.pvtTable .pvtTotalLabel {
     background-color: #f9fafb;
     color: #0b74de;
-    padding: 10px;
+    padding: 2px;
     font-weight: bold;
     text-align: center;
 }
@@ -78,13 +78,13 @@ table.pvtTable .pvtTotalLabel {
     font-weight: bold;
     background-color: #f2f2f2;
     color: #0b74de;
-    padding: 10px;
+    padding: 2px;
 }
 
 /* Values container */
 .pvtVals {
     white-space: nowrap;
-    padding: 10px;
+    padding: 2px;
     color: #1a1a1a;
     border: 1px solid #d9dadb;
     background-color: #ffffff;
@@ -110,7 +110,7 @@ table.pvtTable .pvtTotalLabel {
 .pvtAxisContainer {
     border: 1px solid #d9dadb;
     background-color: #ffffff;
-    padding: 10px;
+    padding: 2px;
     min-width: 20px;
     min-height: 20px;
 }
@@ -170,7 +170,7 @@ table.pvtTable .pvtTotalLabel {
     width: 300px;
     background-color: #ffffff;
     border: 1px solid #d9dadb;
-    padding: 10px;
+    padding: 2px;
     position: absolute;
     text-align: center;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
