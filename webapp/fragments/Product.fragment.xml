@@ -15,7 +15,7 @@
     >
         <StandardListItem
             title="{PRODUCT_ID}"
-            description="{PROD_DESC}"
+            description="{PRODUCT_ID}"
             type="Active"
         />
     </SelectDialog>

@@ -148,7 +148,7 @@ sap.ui.define([
                         });
                     }
                 } else {
-                    const oRes = await that.readAllData(that.catModel, "getfactorylocdesc", { "$skip": 0, "$top": 50000 }, []);
+                    const oRes = await that.readAllData(that.planModel, "getAssemblyData", { "$skip": 0, "$top": 50000 }, []);
 
                     that._valueHelpDialogFLoc.setBusy(false);
                     if (oRes.length > 0) {
@@ -207,7 +207,7 @@ sap.ui.define([
                             )
                         );
 
-                        var unqLoc = that.removeDuplicates(sLoc, ['DEMAND_LOC']);
+                        var unqLoc = that.removeDuplicates(sLoc, ['LOCATION_ID']);
                         locModel.setData({
                             results: unqLoc
                         });
@@ -272,7 +272,7 @@ sap.ui.define([
                             );
                             sProd = that.mulInpLoc.getTokens().flatMap(l =>
                                 sLoc.filter(K =>
-                                    l.getText() === K.DEMAND_LOC
+                                    l.getText() === K.LOCATION_ID
                                 )
                             );
 
