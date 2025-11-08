@@ -36,12 +36,12 @@
                                         <MultiInput id="idAsmbLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
                                     </filterbar:control>
                                 </filterbar:FilterGroupItem> -->
-                            <filterbar:FilterGroupItem name="PERIODDESC" label="Month Start" groupName="group1" visibleInFilterBar="true">
+                            <filterbar:FilterGroupItem name="PERIODDESC" label="Start Month" groupName="group1" visibleInFilterBar="true">
                                 <filterbar:control>
                                     <MultiInput id="idMonStartLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
                                 </filterbar:control>
                             </filterbar:FilterGroupItem>
-                            <filterbar:FilterGroupItem name="PERIODDESC1" label="Month End" groupName="group1" visibleInFilterBar="true">
+                            <filterbar:FilterGroupItem name="PERIODDESC1" label="End Month" groupName="group1" visibleInFilterBar="true">
                                 <filterbar:control>
                                     <MultiInput id="idMonEndLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
                                 </filterbar:control>
@@ -59,7 +59,7 @@
                         <core:Item key="Assembly" text="Assembly" />
                         <core:Item key="Product" text="Product Demand" />
                         <core:Item key="Restriction" text="Restriction" />
-                        <core:Item key="OptPercent" text="OptPercent" />
+                        <core:Item key="Characteristic" text="Characteristic" />
                     </ComboBox>
                     <Button id="idAsmBtn" text="Assembly" press="onOpenAsm"></Button>
                     <ToolbarSpacer />

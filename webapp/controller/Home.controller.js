@@ -705,7 +705,7 @@ sap.ui.define([
                         FACTORY_LOCATION: FLoc, LOCATION: Loc, PRODUCT: Prod, START_MONTH: Mstart, END_MONTH: MEnd
                     });
                     data = JSON.parse(oRes.getAssemblyLagfun);
-                    that.staticColumns = ["Assembly Description", "Lag Month"];
+                    that.staticColumns = ["Assembly", "Lag Month"];
                     that.byId("idAsmBtn").setVisible(true);
                 }
                 if (type === "Product") {
@@ -724,14 +724,14 @@ sap.ui.define([
                     that.staticColumns = ["Line", "Restriction", "Lag Month"]
                     that.byId("idAsmBtn").setVisible(false);
                 }
-                // if (type === "Restriction") {
-                //     oRes = await that.callFunction("getRestrictionLagFun", {
-                //         FACTORY_LOCATION: FLoc, LOCATION: Loc, START_MONTH: Mstart, END_MONTH: MEnd
-                //     });
-                //     data = JSON.parse(oRes.getRestrictionLagFun);
-                //     that.staticColumns = ["Location", "Product", "Lag Month"]
-                //     that.byId("idAsmBtn").setVisible(false);
-                // }
+                if (type === "Characteristic") {
+                    oRes = await that.callFunction("getOptPercentLagFun", {
+                        FACTORY_LOCATION: FLoc, LOCATION: Loc, PRODUCT: Prod, START_MONTH: Mstart, END_MONTH: MEnd
+                    });
+                    data = JSON.parse(oRes.getOptPercentLagFun);
+                    that.staticColumns = ["Characteristic", "Characteristic value", "Lag Month"]
+                    that.byId("idAsmBtn").setVisible(false);
+                }
                 that.allData = data;
                 that.allData.forEach(o => {
                     if (o.ASSEMBLY_DESC)
@@ -815,10 +815,18 @@ sap.ui.define([
             keys.forEach(key => {
                 let label;
                 switch (key) {
+                    case "CHAR_NUM":
+                        label = "Characteristic";
+                        break;
+                    case "CHARVAL_NUM":
+                        label = "Characteristic value";
+                        break;
                     case "LINE_ID":
                         label = "Line";
+                        break;
                     case "RESTRICTION":
                         label = "Restriction";
+                        break;
                     case "FACTORY_LOC":
                         label = "Factory Location";
                         break;
@@ -829,10 +837,10 @@ sap.ui.define([
                         label = "Product"
                         break;
                     case "ASSEMBLY":
-                        label = "Assembly";
+                        label = "Assembly ID";
                         break;
                     case "ASSEMBLY_DESC":
-                        label = "Assembly Description";
+                        label = "Assembly";
                         break;
                     case "MRP_GROUP":
                         label = "MRP Group";
@@ -1014,6 +1022,13 @@ sap.ui.define([
                             $(this).css('vertical-align', 'top');
                         }
                     });
+
+                    $(".pvtTable").find('th').each(function () {
+                        if ($(this).text().trim() === '0') {
+                            $(this).html("Actual");
+                        }
+                    });
+
 
                     // $(".pvtTable").find('tbody tr').each(function () {
                     //     var hasEmptyCell = false;
@@ -1204,8 +1219,8 @@ sap.ui.define([
                                 if (cellText.includes(".")) {
                                     $(this).text(cellText.split(".")[0]);
                                 }
-                                let rowHeader = $(".pvtTable").find(`tr:eq(${$(this)?.parent()?.index() + 2}) th`).filter((_, th) => $(th).text().trim() == "0").length > 0 ? '0' : "";
-                                if (rowHeader == '0') {
+                                let rowHeader = $(".pvtTable").find(`tr:eq(${$(this)?.parent()?.index() + 2}) th`).filter((_, th) => $(th).text().trim() == "Actual").length > 0 ? 'Actual' : "";
+                                if (rowHeader == 'Actual') {
                                     $(this).closest('tr').find('td').addClass('actual');
                                 }
                             });

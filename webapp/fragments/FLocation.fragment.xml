@@ -4,7 +4,6 @@
 >
     <SelectDialog
         id="idFLocDialogLag"
-        title="Fac Location"
         search="handleSearch"
 		liveChange="handleSearch"
         multiSelect="false"
