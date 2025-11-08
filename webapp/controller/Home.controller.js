@@ -705,7 +705,7 @@ sap.ui.define([
                         FACTORY_LOCATION: FLoc, LOCATION: Loc, PRODUCT: Prod, START_MONTH: Mstart, END_MONTH: MEnd
                     });
                     data = JSON.parse(oRes.getAssemblyLagfun);
-                    that.staticColumns = ["Assembly", "Lag Month"];
+                    that.staticColumns = ["Assembly Description", "Lag Month"];
                     that.byId("idAsmBtn").setVisible(true);
                 }
                 if (type === "Product") {
@@ -734,13 +734,13 @@ sap.ui.define([
                 // }
                 that.allData = data;
                 that.allData.forEach(o => {
-                    if (o.ASSEMBLY)
-                        if (!assembly.includes(o.ASSEMBLY))
-                            assembly.push(o.ASSEMBLY);
+                    if (o.ASSEMBLY_DESC)
+                        if (!assembly.includes(o.ASSEMBLY_DESC))
+                            assembly.push(o.ASSEMBLY_DESC);
                 })
                 that.updateQty();
                 if (type === "Assembly")
-                    sap.ui.getCore().byId("asmDetailsDialog").setModel(new JSONModel({ asmDetails: assembly.map(a => { return { ASSEMBLY: a } }) }));
+                    sap.ui.getCore().byId("asmDetailsDialog").setModel(new JSONModel({ asmDetails: assembly.map(a => { return { ASSEMBLY_DESC: a } }) }));
                 that.loadPivotTable(that.allData);
                 that.getView().setBusy(false);
             } catch (error) {
@@ -770,14 +770,14 @@ sap.ui.define([
             const asm = [];
             aSelectedItems.forEach(function (item) {
                 const obj = item.getBindingContext().getObject();
-                asm.push(obj.ASSEMBLY);
+                asm.push(obj.ASSEMBLY_DESC);
             });
-            tempdata = tempdata.filter(o => asm.includes(o.ASSEMBLY));
+            tempdata = tempdata.filter(o => asm.includes(o.ASSEMBLY_DESC));
             that.loadPivotTable(tempdata);
         },
         handleSearchs: function (oEvent) {
             var sValue = oEvent.getParameter("value");
-            var oFilter = new Filter("ASSEMBLY", FilterOperator.Contains, sValue);
+            var oFilter = new Filter("ASSEMBLY_DESC", FilterOperator.Contains, sValue);
             var oBinding = oEvent.getSource().getBinding("items");
             oBinding.filter([oFilter]);
         },
@@ -830,6 +830,9 @@ sap.ui.define([
                         break;
                     case "ASSEMBLY":
                         label = "Assembly";
+                        break;
+                    case "ASSEMBLY_DESC":
+                        label = "Assembly Description";
                         break;
                     case "MRP_GROUP":
                         label = "MRP Group";

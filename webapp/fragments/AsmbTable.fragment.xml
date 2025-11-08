@@ -23,8 +23,8 @@
 			<cells>
 				<!-- Primary Characteristic Info -->
 				<ObjectIdentifier 
-					title="{ASSEMBLY}" 
-					text="{ASSEMBLY}" />
+					title="{ASSEMBLY_DESC}" 
+					text="{ASSEMBLY_DESC}" />
 				
 				<!-- Characteristic Value Info -->
 				<!-- <ObjectIdentifier 

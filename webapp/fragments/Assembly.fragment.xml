@@ -15,8 +15,8 @@
         growing="false"
     >
         <StandardListItem
-            title="{ASSEMBLY}"
-            description="{ASSEMBLY}"
+            title="{ASSEMBLY_DESC}"
+            description="{ASSEMBLY_DESC}"
             type="Active"
         />
     </SelectDialog>
