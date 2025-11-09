@@ -3,6 +3,72 @@
   "authenticationMethod": "route",
   "routes": [
     {
+      "source": "^/v2/planner/(.*)$",
+      "target": "/v2/planner/$1",
+      "destination": "ConfigProdAuth",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": {
+        "GET": [
+          "$XSAPPNAME.User",
+          "$XSAPPNAME.admin"
+        ],
+        "PUT": [
+          "$XSAPPNAME.User",
+          "$XSAPPNAME.admin"
+        ],
+        "PATCH": [
+          "$XSAPPNAME.User",
+          "$XSAPPNAME.admin"
+        ],
+        "POST": [
+          "$XSAPPNAME.User",
+          "$XSAPPNAME.admin"
+        ],
+        "DELETE": [
+          "$XSAPPNAME.User",
+          "$XSAPPNAME.admin"
+        ],
+        "default": [
+          "$XSAPPNAME.User",
+          "$XSAPPNAME.admin"
+        ]
+      }
+    },
+    {
+      "source": "^/v2/catalog/(.*)$",
+      "target": "/v2/catalog/$1",
+      "destination": "ConfigProdAuth",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "scope": {
+        "GET": [
+          "$XSAPPNAME.User",
+          "$XSAPPNAME.admin"
+        ],
+        "PUT": [
+          "$XSAPPNAME.User",
+          "$XSAPPNAME.admin"
+        ],
+        "PATCH": [
+          "$XSAPPNAME.User",
+          "$XSAPPNAME.admin"
+        ],
+        "POST": [
+          "$XSAPPNAME.User",
+          "$XSAPPNAME.admin"
+        ],
+        "DELETE": [
+          "$XSAPPNAME.User",
+          "$XSAPPNAME.admin"
+        ],
+        "default": [
+          "$XSAPPNAME.User",
+          "$XSAPPNAME.admin"
+        ]
+      }
+    },
+    {
       "source": "^/v2/(.*)$",
       "target": "/v2/$1",
       "destination": "ConfigProdAuth",
