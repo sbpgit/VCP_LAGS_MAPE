@@ -31,11 +31,6 @@
                                     <MultiInput id="idProdLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
                                 </filterbar:control>
                             </filterbar:FilterGroupItem>
-                            <!-- <filterbar:FilterGroupItem name="ASSEMBLY" label="Assembly" groupName="group1" visibleInFilterBar="true" id="idAsmbLabelLag">
-                                    <filterbar:control>
-                                        <MultiInput id="idAsmbLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
-                                    </filterbar:control>
-                                </filterbar:FilterGroupItem> -->
                             <filterbar:FilterGroupItem name="PERIODDESC" label="Start Month" groupName="group1" visibleInFilterBar="true">
                                 <filterbar:control>
                                     <MultiInput id="idMonStartLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
