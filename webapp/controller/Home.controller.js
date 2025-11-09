@@ -26,6 +26,35 @@ sap.ui.define([
             // that.mulInpAsm = that.byId("idAsmbLag");
             that.mulInpmStart = that.byId("idMonStartLag");
             that.mulInpmEnd = that.byId("idMonEndLag");
+
+             const afilter = [
+                new Filter("LEVEL", FilterOperator.EQ, "M")
+            ];
+
+            const oRes = await that.readAllData(that.catModel, "getIBPCalenderWeek", {}, afilter);
+            that.calWeekData = oRes;
+
+            const today = new Date();
+            const todayUTC = new Date(Date.UTC(
+                today.getUTCFullYear(),
+                today.getUTCMonth(),
+                today.getUTCDate()
+            ));
+
+            const foundobj = that.calWeekData.find(f => {
+                const startDate = new Date(f.WEEK_STARTDATE);
+                const endDate = new Date(f.WEEK_ENDDATE);
+
+                // Compare using UTC dates only
+                return todayUTC >= startDate && todayUTC <= endDate;
+            });
+            that.curWeek = foundobj?.PERIODDESC;
+
+            that.mulInpmStart.addToken(new Token({
+                text: that.curWeek,
+                key: that.curWeek,
+                editable: false
+            }));
         },
         loadFragments: function () {
             // that.oCheckBox = new sap.m.CheckBox({
@@ -1024,10 +1053,19 @@ sap.ui.define([
                     });
 
                     $(".pvtTable").find('th').each(function () {
-                        if ($(this).text().trim() === '0') {
+                        const text = $(this).text().trim();
+
+                        // Replace '0' with 'Actual'
+                        if (text === '0') {
                             $(this).html("Actual");
                         }
+
+                        // Highlight the header that matches curWeek
+                        if (text === that.curWeek) {
+                            $(this).css("background-color", "#ffe08a"); // light yellow highlight
+                        }
                     });
+
 
 
                     // $(".pvtTable").find('tbody tr').each(function () {
