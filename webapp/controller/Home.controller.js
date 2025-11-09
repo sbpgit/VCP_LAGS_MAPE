@@ -884,7 +884,7 @@ sap.ui.define([
         },
         loadPivotTable: function (data, rows, val) {
             if (!data.length) {
-                that.oGModel.setProperty("/showPivot", false);
+                // that.oGModel.setProperty("/showPivot", false);
                 that.byId('pivotPageLag').setBusy(false);
                 var existingDiv = document.querySelector(`[id*=mainDiv]`);
                 if (existingDiv && existingDiv.children.length > 0) {
