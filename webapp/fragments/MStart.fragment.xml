@@ -5,6 +5,8 @@
     <SelectDialog
         id="idMStartDialogLag"
         search="handleSearch"
+        title="Start Month"
+        titleAlignment="Center"
         liveChange="handleSearch"
         multiSelect="false"
         rememberSelections="true"

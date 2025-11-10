@@ -6,6 +6,8 @@
         id="idMEndDialogLag"
         search="handleSearch"
         liveChange="handleSearch"
+        title="End Month"
+        titleAlignment="Center"
         multiSelect="false"
         rememberSelections="true"
         confirm="handleSelection"

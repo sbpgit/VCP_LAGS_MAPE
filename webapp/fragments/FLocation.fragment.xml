@@ -5,6 +5,8 @@
     <SelectDialog
         id="idFLocDialogLag"
         search="handleSearch"
+        title="Manufacturing Locations"
+        titleAlignment="Center"
 		liveChange="handleSearch"
         multiSelect="false"
         rememberSelections="true"

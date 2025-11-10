@@ -16,7 +16,7 @@
                 <l:HorizontalLayout allowWrapping="true">
                     <filterbar:FilterBar id="filterbarLag"  useToolbar="false" search=".onGo" filterChange=".onFilterChange" showClearOnFB="true" clear="onClear">
                         <filterbar:filterGroupItems>
-                            <filterbar:FilterGroupItem name="FACTORY_LOACATION" label="Factory Location" groupName="group1" visibleInFilterBar="true" id="idLocLabeLag">
+                            <filterbar:FilterGroupItem name="FACTORY_LOACATION" label="Manufacturing Location" groupName="group1" visibleInFilterBar="true" id="idLocLabeLag">
                                 <filterbar:control>
                                     <MultiInput id="idFacLocLag" value="" required="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
                                 </filterbar:control>
@@ -56,7 +56,9 @@
                         <core:Item key="Restriction" text="Restriction" />
                         <core:Item key="Characteristic" text="Characteristic" />
                     </ComboBox>
-                    <Button id="idAsmBtn" text="Assembly" press="onOpenAsm"></Button>
+                    <!-- <Button id="idAsmBtn" text="Assembly" press="onOpenAsm"></Button> -->
+                    <CheckBox id="idFilterCheck" selected="true" text="Show Filter" select="onFilter"></CheckBox>
+                    <Button text="Key Figure" id="idkeyFig" press="onPressKey"></Button>
                     <ToolbarSpacer />
                     <RadioButtonGroup id="idMapTypeGroup" columns="3" selectedIndex="0" select="onSelectMapType">
                         <RadioButton id="idMapBox" text="MAPE" />

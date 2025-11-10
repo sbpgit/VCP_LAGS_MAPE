@@ -5,6 +5,8 @@
     <SelectDialog
         id="idLocDialogLag"
         search="handleSearch"
+        title="Demand Locations"
+        titleAlignment="Center"
 		liveChange="handleSearch"
         multiSelect="false"
         rememberSelections="true"

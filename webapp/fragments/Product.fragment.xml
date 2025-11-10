@@ -5,6 +5,8 @@
     <SelectDialog
         id="idProductDialogLag"
         search="handleSearch"
+       titleAlignment="Center"
+        title=  "Products"
         liveChange="handleSearch"
         multiSelect="false"
         rememberSelections="true"
