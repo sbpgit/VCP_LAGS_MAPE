@@ -51,9 +51,50 @@ sap.ui.define([
             });
             that.curWeek = foundobj?.PERIODDESC;
 
-            that.mulInpmStart.addToken(new Token({
+            function findPeriodDescByMonthsBack(calWeekData, currentWeek) {
+                const today = new Date();
+
+                // Try 3 months back, then 2, then 1
+                for (let monthsBack = 3; monthsBack >= 1; monthsBack--) {
+                    const targetDate = new Date();
+                    targetDate.setMonth(today.getMonth() - monthsBack);
+
+                    const targetDateUTC = new Date(Date.UTC(
+                        targetDate.getUTCFullYear(),
+                        targetDate.getUTCMonth(),
+                        targetDate.getUTCDate()
+                    ));
+
+                    const foundWeek = calWeekData.find(week => {
+                        const startDate = new Date(week.WEEK_STARTDATE);
+                        const endDate = new Date(week.WEEK_ENDDATE);
+
+                        return targetDateUTC >= startDate && targetDateUTC <= endDate;
+                    });
+
+                    if (foundWeek) {
+                        return foundWeek.PERIODDESC;
+                    }
+                }
+
+                // If nothing found in 3, 2, or 1 months back, return current week
+                return currentWeek;
+            }
+
+
+            that.monththreeBcckWeek = findPeriodDescByMonthsBack(this.calWeekData, this.currentWeek);
+
+
+
+            that.mulInpmEnd.addToken(new Token({
                 text: that.curWeek,
                 key: that.curWeek,
+                editable: false
+            }));
+
+            that.mulInpmStart.addToken(new Token({
+                text: that.monththreeBcckWeek,
+                key: that.monththreeBcckWeek,
                 editable: false
             }));
         },
@@ -107,7 +148,6 @@ sap.ui.define([
             that._valueHelpDialogProd.setModel(new JSONModel([]));
             that._valueHelpDialogMStart.setModel(new JSONModel([]));
             that._valueHelpDialogMEnd.setModel(new JSONModel([]));
-            sap.ui.getCore().byId("asmDetailsDialog").setModel(new JSONModel([]));
             that.allData = [];
             var existingDiv = document.querySelector('[id*="mainDivLag"]');
             if (existingDiv.children.length > 0) {
@@ -115,6 +155,18 @@ sap.ui.define([
                     existingDiv.removeChild(existingDiv.firstChild);
                 }
             }
+
+            that.mulInpmEnd.addToken(new Token({
+                text: that.curWeek,
+                key: that.curWeek,
+                editable: false
+            }));
+
+            that.mulInpmStart.addToken(new Token({
+                text: that.monththreeBcckWeek,
+                key: that.monththreeBcckWeek,
+                editable: false
+            }));
         },
         handleCheckboxChange: function (event) {
             var controlId = event.getSource().getParent().getParent().sId.split("-")[0];

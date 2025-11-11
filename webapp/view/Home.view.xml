@@ -57,7 +57,7 @@
                         <core:Item key="Characteristic" text="Characteristic" />
                     </ComboBox>
                     <!-- <Button id="idAsmBtn" text="Assembly" press="onOpenAsm"></Button> -->
-                    <CheckBox id="idFilterCheck" selected="true" text="Show Filter" select="onFilter"></CheckBox>
+                    <CheckBox id="idFilterCheck" selected="false" text="Show Filter" select="onFilter"></CheckBox>
                     <Button text="Key Figure" id="idkeyFig" press="onPressKey"></Button>
                     <ToolbarSpacer />
                     <RadioButtonGroup id="idMapTypeGroup" columns="3" selectedIndex="0" select="onSelectMapType">
