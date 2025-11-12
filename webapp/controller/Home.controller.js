@@ -751,7 +751,7 @@ sap.ui.define([
                 const Mstart = getTokenText(that.mulInpmStart);
                 const MEnd = getTokenText(that.mulInpmEnd);
                 if (!FLoc || !Loc || !Prod || !Mstart || !MEnd)
-                    return MessageToast.show("Select Required Filter");
+                    return MessageToast.show("Select Mandatory Filter");
                 that.getView().setBusy(true);
 
                 let oRes, data, val;
