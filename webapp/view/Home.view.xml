@@ -53,7 +53,7 @@
                     <ComboBox id="idTypeBox" selectedKey="Assembly" selectionChange="onChnageType">
                         <core:Item key="Assembly" text="Assembly" />
                         <core:Item key="Product" text="Product Demand" />
-                        <core:Item key="Restriction" text="Restriction" />
+                        <core:Item key="Resource" text="Resource" />
                         <core:Item key="Characteristic" text="Characteristic" />
                     </ComboBox>
                     <!-- <Button id="idAsmBtn" text="Assembly" press="onOpenAsm"></Button> -->

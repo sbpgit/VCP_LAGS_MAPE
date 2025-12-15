@@ -18,7 +18,7 @@
     >   
         <StandardListItem
             title="{FACTORY_LOC}"
-            description="{FACTORY_LOC}"
+            description="{LOCATION_DESC}"
             type="Active"
         />
     </SelectDialog>

@@ -11,6 +11,12 @@ sap.ui.define([
     return Controller.extend("vcpapp.lags.controller.Home", {
         onInit() {
             that = this;
+            if(sap.ushell){
+          that.sUser = sap.ushell.Container.getService("UserInfo").getEmail()
+        }
+        if(!that.sUser){
+            that.sUser='null';
+        }
             that.oGModel = that.getOwnerComponent().getModel("oGModel");
             that.catModel = that.getOwnerComponent().getModel("catalog");
             that.planModel = that.getOwnerComponent().getModel("planner");
@@ -205,7 +211,10 @@ sap.ui.define([
                         });
                     }
                 } else {
-                    const oRes = await that.readAllData(that.planModel, "getAssemblyData", { "$skip": 0, "$top": 50000 }, []);
+                     const afilter = [
+                        new Filter("USER", FilterOperator.EQ, that.sUser)
+                    ];
+                    const oRes = await that.readAllData(that.catModel, "getRolesLocProd", { "$skip": 0, "$top": 50000 }, afilter);
 
                     that._valueHelpDialogFLoc.setBusy(false);
                     if (oRes.length > 0) {
@@ -264,7 +273,7 @@ sap.ui.define([
                             )
                         );
 
-                        var unqLoc = that.removeDuplicates(sLoc, ['LOCATION_ID']);
+                        var unqLoc = that.removeDuplicates(sLoc, ['DEMAND_LOC']);
                         locModel.setData({
                             results: unqLoc
                         });
@@ -328,7 +337,7 @@ sap.ui.define([
                             );
                             sProd = that.mulInpLoc.getTokens().flatMap(l =>
                                 sLoc.filter(K =>
-                                    l.getText() === K.LOCATION_ID
+                                    l.getText() === K.DEMAND_LOC
                                 )
                             );
 
@@ -694,6 +703,9 @@ sap.ui.define([
                     oModel.read(`/${entity}`, {
                         filters: filter,
                         urlParameters: currentUrlParameters,
+                         headers: {
+                        "x-user-id": that.sUser,
+                         },
                         success(oRes) {
                             resolve(oRes.results);
                         },
@@ -780,12 +792,12 @@ sap.ui.define([
                     that.staticColumns = ["Location", "Product", "Lag Month"]
                     that.byId("idkeyFig").setVisible(false);
                 }
-                if (type === "Restriction") {
+                if (type === "Resource") {
                     oRes = await that.callFunction("getRestrictionLagFun", {
                         FACTORY_LOCATION: FLoc, LOCATION: Loc, START_MONTH: Mstart, END_MONTH: MEnd
                     });
                     data = JSON.parse(oRes.getRestrictionLagFun);
-                    that.staticColumns = ["Line", "Restriction", "Lag Month"]
+                    that.staticColumns = ["Line", "Resource", "Lag Month"]
                     that.byId("idkeyFig").setVisible(false);
                 }
                 if (type === "Characteristic") {
@@ -895,7 +907,7 @@ sap.ui.define([
                     key = `${o.ASSEMBLY_DESC}_${o.SELECTED_MONTH}`;
                 } else if (type === "Product") {
                     key = `${o.LOCATION_ID}_${o.PRODUCT_ID}_${o.SELECTED_MONTH}`;
-                } else if (type === "Restriction") {
+                } else if (type === "Resource") {
                     key = `${o.LINE_ID}_${o.RESTRICTION}_${o.SELECTED_MONTH}`;
                 } else if (type === "Characteristic") {
                     key = `${o.CHAR_DESC}_${o.CHARVAL_DESC}_${o.SELECTED_MONTH}`;
@@ -942,7 +954,7 @@ sap.ui.define([
                         label = "Line";
                         break;
                     case "RESTRICTION":
-                        label = "Restriction";
+                        label = "Resource";
                         break;
                     case "FACTORY_LOC":
                         label = "Manufacturing Location";
@@ -1073,7 +1085,7 @@ sap.ui.define([
                     "Location Description",
                     "Product Description",
                     "Line",
-                    "Restriction",
+                    "Resource",
                     "Manufacturing Location",
                     "Location",
                     "Product",

@@ -17,8 +17,8 @@
         selectionChange="handleSelectionChange"
     >   
         <StandardListItem
-            title="{LOCATION_ID}"
-            description="{LOCATION_ID}"
+            title="{DEMAND_LOC}"
+            description="{DEMAND_DESC}"
             type="Active"
         />
     </SelectDialog>
