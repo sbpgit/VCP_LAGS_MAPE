@@ -14,7 +14,7 @@
         <f:header>
             <f:DynamicPageHeader pinnable="true">
                 <l:HorizontalLayout allowWrapping="true">
-                    <filterbar:FilterBar id="filterbarLag"  useToolbar="false" search=".onGo" filterChange=".onFilterChange" showClearOnFB="true" clear="onClear">
+                    <filterbar:FilterBar id="filterbarLag" useToolbar="false" search=".onGo" filterChange=".onFilterChange" showClearOnFB="true" clear="onClear">
                         <filterbar:filterGroupItems>
                             <filterbar:FilterGroupItem name="FACTORY_LOACATION" label="Manufacturing Location" groupName="group1" visibleInFilterBar="true" id="idLocLabeLag">
                                 <filterbar:control>
@@ -49,12 +49,13 @@
         <f:content>
             <VBox id="pivotPageLag">
                 <OverflowToolbar id="idPivotToolBarLag" height="12%" visible="{= ${oGModel>/showPivot} }">
-                <Label text="Lags Type:" design="Bold"></Label>
+                    <Label text="Lags Type:" design="Bold"></Label>
                     <ComboBox id="idTypeBox" selectedKey="Assembly" selectionChange="onChnageType">
                         <core:Item key="Assembly" text="Assembly" />
                         <core:Item key="Product" text="Product Demand" />
                         <core:Item key="Resource" text="Resource" />
                         <core:Item key="Characteristic" text="Characteristic" />
+                        <core:Item key="StatForecast" text="Stat Forecast" />
                     </ComboBox>
                     <!-- <Button id="idAsmBtn" text="Assembly" press="onOpenAsm"></Button> -->
                     <CheckBox id="idFilterCheck" selected="false" text="Show Filter" select="onFilter"></CheckBox>

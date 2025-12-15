@@ -11,12 +11,12 @@ sap.ui.define([
     return Controller.extend("vcpapp.lags.controller.Home", {
         onInit() {
             that = this;
-            if(sap.ushell){
-          that.sUser = sap.ushell.Container.getService("UserInfo").getEmail()
-        }
-        if(!that.sUser){
-            that.sUser='null';
-        }
+            if (sap.ushell) {
+                that.sUser = sap.ushell.Container.getService("UserInfo").getEmail()
+            }
+            if (!that.sUser) {
+                that.sUser = 'null';
+            }
             that.oGModel = that.getOwnerComponent().getModel("oGModel");
             that.catModel = that.getOwnerComponent().getModel("catalog");
             that.planModel = that.getOwnerComponent().getModel("planner");
@@ -211,7 +211,7 @@ sap.ui.define([
                         });
                     }
                 } else {
-                     const afilter = [
+                    const afilter = [
                         new Filter("USER", FilterOperator.EQ, that.sUser)
                     ];
                     const oRes = await that.readAllData(that.catModel, "getRolesLocProd", { "$skip": 0, "$top": 50000 }, afilter);
@@ -703,9 +703,9 @@ sap.ui.define([
                     oModel.read(`/${entity}`, {
                         filters: filter,
                         urlParameters: currentUrlParameters,
-                         headers: {
-                        "x-user-id": that.sUser,
-                         },
+                        headers: {
+                            "x-user-id": that.sUser,
+                        },
                         success(oRes) {
                             resolve(oRes.results);
                         },
@@ -805,6 +805,14 @@ sap.ui.define([
                         FACTORY_LOCATION: FLoc, LOCATION: Loc, PRODUCT: Prod, START_MONTH: Mstart, END_MONTH: MEnd
                     });
                     data = JSON.parse(oRes.getOptPercentLagFun);
+                    that.staticColumns = ["Characteristic", "Characteristic value", "Lag Month"]
+                    that.byId("idkeyFig").setVisible(false);
+                }
+                if (type === "StatForecast") {
+                    oRes = await that.callFunction("getStatForecast", {
+                        FACTORY_LOCATION: FLoc, LOCATION: Loc, PRODUCT: Prod, START_MONTH: Mstart, END_MONTH: MEnd
+                    });
+                    data = JSON.parse(oRes.getStatForecast);
                     that.staticColumns = ["Characteristic", "Characteristic value", "Lag Month"]
                     that.byId("idkeyFig").setVisible(false);
                 }
